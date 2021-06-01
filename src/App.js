@@ -14,7 +14,7 @@ import DetailsPage from './Pages/Hospital/DetailsPage';
 // import AllocatequotaPage from './Pages/District/AllocatequotaPage';
 import Session from './Pages/Hospital/Session';
 
-
+import Login from './Pages/Login/login';
 
 function App() {
 
@@ -22,18 +22,19 @@ function App() {
   //jsx----------------------------
   return (
     <>
-     
-     <Router>
-                   <Switch>
-                          <Route exact path='/' component={Hospital}/> 
-                          <Route exact path='/session' component={Session}/> 
-                          <Route exact path='/login' component={ReferencePage}/> 
-                          <Route exact path='/details' component={DetailsPage}/> 
-                          {/* <Route exact path='/vaccine' component={MainQuataPage}/> 
+
+      <Router>
+        <Switch>
+          <Route exact path='/' component={Hospital} />
+          <Route exact path='/session' component={Session} />
+          <Route exact path='/login' component={ReferencePage} />
+          <Route exact path='/details' component={DetailsPage} />
+          {/* <Route exact path='/vaccine' component={MainQuataPage}/> 
                           <Route exact path='/quota' component={AllocatequotaPage}/>  */}
-                   </Switch>
-    </Router>
-          
+          <Route exact path='/new/login' component={Login} />
+        </Switch>
+      </Router>
+
     </>
   )
 }
