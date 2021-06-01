@@ -4,12 +4,23 @@
     box-sizing: border-box;
   }
 
+ .hospitals{
+  box-sizing: border-box;
+  height: 61px;
+  width: auto;
+  border: 1px solid #70748E;
+  border-radius: 30px;
+  background-color: #FFFFFF;
+  /* margin-left: 90px!important; */
+  margin: auto 70px;
+}
 
-body{
-    /* background: rgb(219,226,226); */
-  }
+
+/* body{
+    background: rgb(219,226,226);
+  } */
   
-  .row{
+  /* .row{
     background: white;
   
   }
@@ -20,30 +31,24 @@ body{
   }
 
 
+  /* 
+  } */
+
   .btn1{
-      border: none;
-      outline: none;
-      height: 60px;
-      width: 430px;
-      color: white;
-      font-weight: bold;
-      border-radius: 30px;
-     background: linear-gradient(141.44deg, #6558F4 0%, #2C1FB5 100%);
-     margin-left: 90px!important;
-  }
-
-
-
-
-  .hospitals{
-    box-sizing: border-box;
-    height: 61px;
-    width: 431px;
-    border: 1px solid #70748E;
+    margin: auto 85px;
+    border: none;
+    outline: none;
+    height: 60px;
+    width: 430px;
+    color: white;
+    font-weight: bold;
     border-radius: 30px;
-    background-color: #FFFFFF;
-    margin-left: 90px!important;
+   background: linear-gradient(141.44deg, #6558F4 0%, #2C1FB5 100%);
+   /* margin-left: 90px!important; */
   }
+
+
+ 
 
 
 
@@ -58,10 +63,10 @@ body{
   }
 
 
-
+ */
 
   /* //reference page/// */
-.home{
+/* .home{
   z-index: 1;
   position: relative;
   height: 100vh;
@@ -89,19 +94,19 @@ body{
   top: 60%;
   left: 50%;
   transform: translate(-50%,-50%);
-  /* color: #fff; */
+  color: #fff;
   font-size: 30px;
   border-radius: 20px;
   background-color: #FFFFFF;
 
-}
+} */
 
-.welcome_text_inside{
+/* .welcome_text_inside{
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
 }
 
@@ -200,14 +205,14 @@ body{
   font-weight: bold;
 
 }
-
+ */
 
 
 /* //details page */
 
 
 
-.ref_id_title{
+/* .ref_id_title{
  
   color: #1D293F;
   font-family: Lato;
@@ -264,9 +269,9 @@ body{
   font-family: Lato;
   font-size: 16px;
   letter-spacing: 0;
-  line-height: 19px;
+  line-height: 19px; */
   /* padding: 5px!important; */
-}
+/* } */
 
 
 .red_incompleted_dose{
@@ -285,7 +290,7 @@ body{
   font-size: 17px;
   font-weight: 600;
   letter-spacing: 0;
-  /* line-height: 24px; */
+  line-height: 24px;
   padding-top: 15px!important;
 }
 

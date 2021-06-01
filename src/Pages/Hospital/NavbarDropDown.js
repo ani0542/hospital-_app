@@ -11,18 +11,18 @@ const SIZE = [
 function NavbarDropDown() {
     return (
         <>
-                                           <Form validate="false" size="large" className='pt-3'>
-                                                    <Form.Select
-                                                        // label="Projects"
-                                                        name="module"
-                                                        required
-                                                        search
-                                                        selection
-                                                        placeholder="Select Hospitals"
-                                                        options={ SIZE }
-                                                        // onChange={ ( e, ed ) => onChangeHandler( e, ed, "pid" ) }
-                                                    />
-                                                 </Form> 
+            <Form validate="false" size="large" className='pt-3'>
+                <Form.Select
+                    // label="Projects"
+                    name="module"
+                    required
+                    search
+                    selection
+                    placeholder="Select Hospitals"
+                    options={ SIZE }
+                    // onChange={ ( e, ed ) => onChangeHandler( e, ed, "pid" ) }
+                />
+            </Form> 
         </>
     )
 }
