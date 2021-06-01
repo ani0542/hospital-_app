@@ -13,8 +13,7 @@ import DetailsPage from './Pages/Hospital/DetailsPage';
 // import MainQuataPage from './Pages/District/MainQuataPage';
 // import AllocatequotaPage from './Pages/District/AllocatequotaPage';
 import Session from './Pages/Hospital/Session';
-
-import Login from './Pages/Login/login';
+ 
 
 function App() {
 
@@ -30,8 +29,7 @@ function App() {
           <Route exact path='/login' component={ReferencePage} />
           <Route exact path='/details' component={DetailsPage} />
           {/* <Route exact path='/vaccine' component={MainQuataPage}/> 
-                          <Route exact path='/quota' component={AllocatequotaPage}/>  */}
-          <Route exact path='/new/login' component={Login} />
+                          <Route exact path='/quota' component={AllocatequotaPage}/>  */} 
         </Switch>
       </Router>
 
