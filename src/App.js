@@ -1,4 +1,3 @@
-
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
@@ -7,10 +6,7 @@ import {
   // Route,
 } from "react-router-dom";
 import { createHashHistory } from "history";
-// import Hospital from './Pages/Hospital/Hospital';
-// import ReferencePage from "./Pages/Hospital/ReferencePage"
-// import DetailsPage from './Pages/Hospital/DetailsPage';
-// import Session from './Pages/Hospital/Session';
+import './index.css'
 import { Provider } from "react-redux";
 import store from './store';
 import AppRouter from './AppRouter';

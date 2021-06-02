@@ -7,7 +7,23 @@
 body {
   background: #f4f7fc;
 }
-
+#root
+{
+  height:100%
+}
+.container-main
+{
+  background:#EDF3FF;
+  height:100%;
+}
+.updateDistrict
+{
+  border-radius: 30px;
+  border:none;
+  background: linear-gradient(141.44deg, #6558F4 0%, #2C1FB5 100%);
+  width:80%;
+  padding:21px
+}
 .hospitals {
   box-sizing: border-box;
   height: 61px;
@@ -45,6 +61,7 @@ body {
   font-family: Lato;
   font-size: 18px;
   font-weight: bold;
+  border:none;
 }
 .quota:focus-visible
 {
