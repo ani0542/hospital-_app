@@ -5,13 +5,18 @@
 }
 
 .kar-p20 {
-    padding: 20px;
+    padding: 20px !important;
 }
+
 .kar-pt70 {
     padding-top: 70px !important;
 }
 
 /* margin */
+
+.kar-m60 {
+    margin: 60px !important;
+}
 
 .kar-mt20 {
     margin-top: 20px !important;
@@ -53,7 +58,6 @@
     margin-bottom: 10px !important;
 }
 
-
 /* direction */
 
 .kar-fl {
@@ -68,6 +72,10 @@
     position: relative;
 }
 
+.kar-text-a-c{
+    text-align: center;
+}
+
 /* other */
 
 .kar-table-sec {
@@ -79,4 +87,14 @@
 
 .kar-cursor-pointer {
     cursor: pointer;
+}
+
+.kar-cursor-not-allowed {
+    cursor: not-allowed;
+}
+
+.kar-invalid {
+    color: lightcoral;
+    margin: 0px !important;
+    text-align: center;
 }

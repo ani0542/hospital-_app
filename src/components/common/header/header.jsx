@@ -47,7 +47,7 @@ function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/vaccine-center" className="kar-hyper-link">
+                    <Link to="/manage-quota/1" className="kar-hyper-link">
                       Allocate Quota
                     </Link>
                   </li>

@@ -10,6 +10,11 @@ export const getChoiceZones = async () => {
     return await axiosInstance.get("/zones");
 }
 
+export const addZone = async (data) => {
+    return await axiosInstance.post("/karwin_zones", data);
+}
 
-
+export const deleteZone = async (id) => {
+    return await axiosInstance.delete(`/karwin_zones/${id}`);
+}
 

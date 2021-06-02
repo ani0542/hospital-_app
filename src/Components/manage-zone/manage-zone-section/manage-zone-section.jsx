@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { connect } from "react-redux";
+import swal from "sweetalert";
 import KarTable from "../../common/table/table";
 import SearchBox from "../../common/search/search";
 import AddZoneModel from "../../model/add-zone-model/add-zone-model";
+import { deleteZone } from "../../../Services/manage-zone.service";
+import { fetchKarwinZoneList } from "../../../redux/action/manage-zone/manage-zone";
 import "./manage-zone-section.css";
 
-function ManageZoneSection({ zone, isLoading }) {
+function ManageZoneSection({ zone, isLoading, fetchKarwinZoneList }) {
   const tableHeader = [
     {
       key: "1",
@@ -40,6 +43,12 @@ function ManageZoneSection({ zone, isLoading }) {
     }));
   };
 
+  const deleteZoneClick = async (id) => {
+    await deleteZone(id);
+    await fetchKarwinZoneList();
+    swal("Deleted!", "Zone deleted!", "success");
+  };
+
   useEffect(() => {
     updateZone(
       formatZoneValue(
@@ -56,7 +65,13 @@ function ManageZoneSection({ zone, isLoading }) {
             <Row className="kar-table-sec">
               <Col>
                 <SearchBox placeholder="Search district name" />
-                <KarTable tableHeader={tableHeader} tableValue={zoneFormated} />
+                <KarTable
+                  tableHeader={tableHeader}
+                  tableValue={zoneFormated}
+                  deleteFun={deleteZoneClick}
+                  isLoading={isLoading}
+                  tableFor="manage-zone"
+                />
                 <Row className="kar-mt20">
                   <Col>
                     <Button className="kar-add-dis" onClick={handleShow}>
@@ -76,6 +91,8 @@ function ManageZoneSection({ zone, isLoading }) {
 const mapStateToProps = ({ karwinZoneList: { loading, data } }) => {
   return { isLoading: loading, zone: data };
 };
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = (dispatch) => ({
+  fetchKarwinZoneList: () => dispatch(fetchKarwinZoneList()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageZoneSection);
