@@ -1,19 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Row, Col, Table } from "react-bootstrap";
+import { Row, Col, Table, Spinner } from "react-bootstrap";
+import swal from "sweetalert";
 import deleteIcon from "../../../assets/icon/delete.svg";
 import editIcon from "../../../assets/icon/edit.svg";
 import "./table.css";
 
-function KarTable({ tableHeader, tableValue }) {
-  const tableDataRender = (key, value) => {
+function KarTable({ tableHeader, tableValue, tableFor, deleteFun, isLoading }) {
+  const tableDataRender = (key, value, row) => {
     switch (key) {
       case "action":
-        return actionRender(value);
+        return actionRender(value, row);
 
       case "delete":
         return value ? (
-          <img src={deleteIcon} alt="icon" className="kar-mt7 kar-cursor-pointer" />
+          <img
+            src={deleteIcon}
+            alt="icon"
+            className="kar-mt7 kar-cursor-pointer"
+            onClick={() => deleteClick(row.sl_no)}
+          />
         ) : (
           ""
         );
@@ -23,7 +29,7 @@ function KarTable({ tableHeader, tableValue }) {
     }
   };
 
-  const actionRender = (type) => {
+  const actionRender = (type, row) => {
     switch (type) {
       case "manage_and_allocate":
         return (
@@ -31,7 +37,10 @@ function KarTable({ tableHeader, tableValue }) {
             <Link to="/vaccine-center" className="kar-table-link kar-mr20">
               Manage vaccine centers
             </Link>
-            <Link to="/vaccine-center" className="kar-table-link kar-mr20">
+            <Link
+              to={`/manage-quota/${row.sl_no}`}
+              className="kar-table-link kar-mr20"
+            >
               Allocate vaccine quota
             </Link>
           </p>
@@ -47,36 +56,78 @@ function KarTable({ tableHeader, tableValue }) {
       case "edit_delete":
         return (
           <>
-            <img src={editIcon} alt="icon" className="kar-mt7 kar-mr10 kar-cursor-pointer" />
-            <img src={deleteIcon} alt="icon" className="kar-mt7 kar-cursor-pointer" />
+            <img
+              src={editIcon}
+              alt="icon"
+              className="kar-mt7 kar-mr10 kar-cursor-pointer"
+            />
+            <img
+              src={deleteIcon}
+              alt="icon"
+              className="kar-mt7 kar-cursor-pointer"
+            />
           </>
         );
       default:
         return "-";
     }
   };
+
+  const deleteClick = (id) => {
+    if (tableFor === "manage-zone") {
+      swal({
+        title: "Are you sure?",
+        text: "Are you sure that you want to delete this zone?",
+        icon: "warning",
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          deleteFun(id);
+        }
+      });
+    }
+  };
+
   return (
     <>
       <Row>
         <Col>
-          <Table className="kar-table">
-            <thead>
-              <tr>
-                {tableHeader.map((o) => (
-                  <th>{o.name}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {tableValue.map((o) => (
+          {isLoading ? (
+            <div className="kar-text-a-c">
+              <Spinner
+                animation="border"
+                role="status"
+                className="kar-m60"
+              ></Spinner>
+            </div>
+          ) : (
+            <Table className="kar-table">
+              <thead>
                 <tr>
-                  {Object.keys(o).map((item, i) => (
-                    <td>{tableDataRender(item, o[item])}</td>
+                  {tableHeader.map((o) => (
+                    <th>{o.name}</th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+                {tableValue.length ? (
+                  tableValue.map((o) => (
+                    <tr>
+                      {Object.keys(o).map((item, i) => (
+                        <td>{tableDataRender(item, o[item], o)}</td>
+                      ))}
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={tableHeader.length} className="kar-text-a-c kar-p20">
+                      No Data
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </Table>
+          )}
         </Col>
       </Row>
     </>

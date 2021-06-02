@@ -1,12 +1,16 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./PrivateRoute";
 import Hospital from "./Pages/Hospital/Hospital";
 import Session from "./Pages/Hospital/Session";
 import ReferencePage from "./Pages/Hospital/ReferencePage"
 import DetailsPage from './Pages/Hospital/DetailsPage';
 import ManageQuota from './Pages/ManageQuota'
+
+import VaccineCenter from './Pages/VaccineCenter/vaccineCenter';
+import ManageZone from './Pages/ManageZone/manageZone';
+import VaccineCenterDetail from './Pages/VaccineCenterDetail/vaccineCenterDetail';
 
 function AppRouter() {
     return (
@@ -15,10 +19,13 @@ function AppRouter() {
 
             <Route exact path="/session" component={Session} />
             <Route exact path='/manage-quota/:zone_id' component={ManageQuota} />
-          <Route exact path='/login' component={ReferencePage} />
-          <Route exact path='/details' component={DetailsPage} />
+            <Route exact path='/login' component={ReferencePage} />
+            <Route exact path='/details' component={DetailsPage} />
             {/* <PrivateRoute exact path="/session" component={Session} /> */}
-             
+            <Route exact path='/vaccine-center' component={VaccineCenter} />
+            <Route exact path='/manage-zone' component={ManageZone} />
+            <Route exact path='/vaccine-center/:centerId' component={VaccineCenterDetail} />
+
         </Switch>
     );
 }
