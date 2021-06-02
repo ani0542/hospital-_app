@@ -95,7 +95,7 @@ function Header({ access, fetchAccessControl }) {
                 <Dropdown.Toggle>Hospital</Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item>
-                    <NavLink to="/login">Logout</NavLink>
+                    <NavLink to="/">Logout</NavLink>
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
