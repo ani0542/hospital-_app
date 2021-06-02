@@ -6,7 +6,7 @@ const { TabPane } = Tabs;
 
 
 
-const Dummy=()=>{
+const ManageQuota=()=>{
     const list1=[{
         "id":1,
         "priority":1,
@@ -125,4 +125,4 @@ console.log(list)
         )
 }
 
-export default Dummy;
+export default ManageQuota;
