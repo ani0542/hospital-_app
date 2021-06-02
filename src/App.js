@@ -3,36 +3,37 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
+  // Switch,
+  // Route,
 } from "react-router-dom";
+import { createHashHistory } from "history";
+// import Hospital from './Pages/Hospital/Hospital';
+// import ReferencePage from "./Pages/Hospital/ReferencePage"
+// import DetailsPage from './Pages/Hospital/DetailsPage';
+// import Session from './Pages/Hospital/Session';
+import { Provider } from "react-redux";
+import store from './store';
+import AppRouter from './AppRouter';
 
-import Hospital from './Pages/Hospital/Hospital';
-import ReferencePage from "./Pages/Hospital/ReferencePage"
-import DetailsPage from './Pages/Hospital/DetailsPage';
-// import MainQuataPage from './Pages/District/MainQuataPage';
-// import AllocatequotaPage from './Pages/District/AllocatequotaPage';
-import Session from './Pages/Hospital/Session';
- 
+export const hashHistory = createHashHistory();
+
+
 
 function App() {
-
-
   //jsx----------------------------
   return (
     <>
-
-      <Router>
-        <Switch>
+ <Provider store={store}>
+      <Router history={hashHistory}>
+        {/* <Switch>
           <Route exact path='/' component={Hospital} />
           <Route exact path='/session' component={Session} />
           <Route exact path='/login' component={ReferencePage} />
           <Route exact path='/details' component={DetailsPage} />
-          {/* <Route exact path='/vaccine' component={MainQuataPage}/> 
-                          <Route exact path='/quota' component={AllocatequotaPage}/>  */} 
-        </Switch>
+        </Switch> */}
+        <AppRouter/>
       </Router>
-
+   </Provider>
     </>
   )
 }
