@@ -5,6 +5,7 @@ import { combineReducers } from "redux";
 import { loginReducer, loginReducerInit } from "./login.reducer";
 import { ManageZoneReducer } from "./manage-zone.reducer";
 import { ChoiceZoneReducer } from "./choice-zone.reducer";
+import { UserReducer } from "./user.reducer";
 // import { LOGINAUTH } from "../action/login.actions";
 // import { ErrorReducer, ErrorReducerInit } from "./error.reducer";
 
@@ -20,7 +21,8 @@ const reducer = combineReducers({
     // error: ErrorReducer,
     log: loginReducer,
     karwinZoneList: ManageZoneReducer,
-    choiceZoneList: ChoiceZoneReducer
+    choiceZoneList: ChoiceZoneReducer,
+    userAccess: UserReducer
 });
 
 const rootReducer = (state, action) => {

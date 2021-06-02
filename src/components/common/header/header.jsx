@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import governmebticon from "../../../assets/govlogo.png";
 import cowinicon from "../../../assets/cowiniconsmall.png";
 import circleicon from "../../../assets/circleicon.png";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
+import { connect } from "react-redux";
+import { fetchAccessControl } from "../../../redux/action/user/user";
 import "./header.css";
-import { Form } from "semantic-ui-react";
-function Header() {
-  const selectOption = [
-    { key: "Bangalore", value: "Bangalore", text: "Bangalore" },
-    { key: "Hyderabad", value: "Hyderabad", text: "Hyderabad" },
-    { key: "Pune", value: "Pune", text: "Pune" },
-  ];
+
+function Header({ access, fetchAccessControl }) {
+  useEffect(() => {
+    fetchAccessControl();
+  }, []);
+  console.log(access, "access");
   return (
     <>
       <div className="home">
@@ -41,21 +43,45 @@ function Header() {
             <div className="rightside">
               <nav className="nav-area nav-area-link">
                 <ul>
-                  <li>
-                    <Link to="/vaccine-center" className="kar-hyper-link">
-                      Vaccine center
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/manage-quota/1" className="kar-hyper-link">
-                      Allocate Quota
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/manage-zone" className="kar-hyper-link">
-                      Manage Zone
-                    </Link>
-                  </li>
+                  {access && access.manage_cvcs ? (
+                    <li>
+                      <NavLink
+                        to="/vaccine-center"
+                        className="kar-hyper-link"
+                        activeClassName="kar-hyper-link-selected"
+                      >
+                        Vaccine center
+                      </NavLink>
+                    </li>
+                  ) : (
+                    ""
+                  )}
+                  {access && access.manage_quota ? (
+                    <li>
+                      <NavLink
+                        to="/manage-quota/1"
+                        className="kar-hyper-link"
+                        activeClassName="kar-hyper-link-selected"
+                      >
+                        Allocate Quota
+                      </NavLink>
+                    </li>
+                  ) : (
+                    ""
+                  )}
+                  {access && access.manage_zones ? (
+                    <li>
+                      <NavLink
+                        to="/manage-zone"
+                        className="kar-hyper-link"
+                        activeClassName="kar-hyper-link-selected"
+                      >
+                        Manage Zone
+                      </NavLink>
+                    </li>
+                  ) : (
+                    ""
+                  )}
                 </ul>
               </nav>
               <img
@@ -65,11 +91,12 @@ function Header() {
                 height="50px"
                 className="kar-mt5"
               />
-              <Form.Select
-                placeholder="Select Hospitals"
-                options={selectOption}
-                className="header-select-box"
-              />
+              <Dropdown className="kra-header-dropdown">
+                <Dropdown.Toggle>Hospital</Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1">Logout</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
           </nav>
         </div>
@@ -77,5 +104,11 @@ function Header() {
     </>
   );
 }
+const mapStateToProps = ({ userAccess: { access } }) => {
+  return { access: access };
+};
+const mapDispatchToProps = (dispatch) => ({
+  fetchAccessControl: () => dispatch(fetchAccessControl()),
+});
 
-export default Header;
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
