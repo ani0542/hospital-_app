@@ -19,8 +19,8 @@ function AppRouter() {
 
             <Route exact path="/session" component={Session} />
             <Route exact path='/manage-quota/:zone_id' component={ManageQuota} />
-            <Route exact path='/login' component={ReferencePage} />
-            <Route exact path='/details' component={DetailsPage} />
+            <Route exact path='/reference' component={ReferencePage} />
+            <Route exact path='/details/:ref_id' component={DetailsPage} />
             {/* <PrivateRoute exact path="/session" component={Session} /> */}
             <Route exact path='/vaccine-center' component={VaccineCenter} />
             <Route exact path='/manage-zone' component={ManageZone} />

@@ -376,7 +376,7 @@ body {
 
 /* //details page */
 
-/* .ref_id_title{
+.ref_id_title{
  
   color: #1D293F;
   font-family: Lato;
@@ -384,7 +384,30 @@ body {
   font-weight: bold;
 
 }
-
+.reference_id{
+  box-sizing: border-box;
+  padding:16px;
+  width: 45%;
+  border: 1px solid #7D8198;
+  border-radius: 22.5px;
+  background-color: #FFFFFF;
+}
+.reference_id:focus-visible
+{
+  outline:none;
+}
+.reference_button
+{
+  width: 45%;
+  color: #FFFFFF;
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: bold;
+  border:none;
+  border-radius: 23.5px;
+  padding:16px;
+  background: linear-gradient(141.44deg, #6558F4 0%, #2C1FB5 100%);
+}
 .users_text{
   display: flex;
   flex-direction: row;
@@ -433,11 +456,11 @@ body {
   font-family: Lato;
   font-size: 16px;
   letter-spacing: 0;
-  line-height: 19px; */
+  line-height: 19px; 
 
 /* padding: 5px!important; */
 
-/* } */
+ }
 
 .red_incompleted_dose {
   height: 116px;
@@ -503,7 +526,56 @@ body {
   background-color: #FDDEDE!important;
   width: 430px;
 } */
+.text-dose-2
+{
+  color: #1D2941;
+  font-family: Lato;
+  font-size: 19px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.dose1
+{
+  border-radius: 10px;
+  background-color: #D3FAD9;
+  padding: 12px;
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+  color: #1D2941;
+  font-family: Lato;
+  font-size: 16px;
+}
+.dose2
+{
+  border-radius: 10px;
+  background-color: #FDDEDE;
+  width:70%;
+  margin-right: auto;
+  margin-left: auto;
+}
 
+.user_name
+{
+  color: #1D2941;
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: 600;
+}
+.ref_id{
+  color: #1D2941;
+  font-family: Lato;
+  font-size: 16px;
+}
+.modified_container
+{
+  max-width: 700px;
+    background: #fff;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    padding: 40px 40px;
+    height:70%;
+}
 .type_hospital {
   display: flex;
   flex-direction: row;

@@ -5,7 +5,7 @@ import {
   // Switch,
   // Route,
 } from "react-router-dom";
-import { createHashHistory } from "history";
+import { createBrowserHistory } from "history";
 import './index.css'
 import { Provider } from "react-redux";
 import store from './store';
@@ -13,7 +13,7 @@ import AppRouter from './AppRouter';
 
 import Hospital from './Pages/Hospital/Hospital';
 import Session from './Pages/Hospital/Session';
-export const hashHistory = createHashHistory();
+export const hashHistory = createBrowserHistory();
 
 
 
