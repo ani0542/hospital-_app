@@ -1,0 +1,76 @@
+ .home {
+     box-shadow: 0 8px 4px 0 rgba(0, 0, 0, 0.03);
+     background: #fff;
+ }
+
+ .wrapper {
+     margin: 0px 40px;
+     padding: 10px;
+ }
+
+ .nav-area {
+     background-color: #FFFFFF;
+     display: flex;
+ }
+
+ .nav-area>ul {
+     list-style: none;
+     display: flex;
+     margin: 0;
+     padding: 0;
+ }
+
+ .nav-area li {
+     margin-right: 2em;
+ }
+
+ .rightside {
+     display: flex;
+     justify-content: flex-end;
+     flex: 1;
+     margin-right: 8px;
+ }
+
+ #logo {
+     height: 100px;
+     width: 200px;
+     overflow: hidden;
+ }
+
+ .header-select-box {
+     margin-top: 10px;
+     margin-left: 10px;
+ }
+
+ .header-select-box .ui.selection.dropdown, .header-select-box .ui.selection.active.dropdown .menu, .header-select-box .ui.selection.active.dropdown:hover .menu {
+     border: none;
+ }
+
+ .nav-area-link {
+     margin-top: 20px;
+ }
+
+ ::-webkit-input-placeholder {
+     font-size: 14px;
+ }
+
+ ::-moz-placeholder {
+     font-size: 14px;
+ }
+
+ :-ms-input-placeholder {
+     font-size: 14px;
+ }
+
+ :-moz-placeholder {
+     font-size: 14px;
+ }
+
+ .kar-hyper-link {
+     color: #1D2941;
+     font-family: Lato;
+     font-size: 14px;
+     letter-spacing: 0;
+     line-height: 17px;
+     text-transform: uppercase;
+ }

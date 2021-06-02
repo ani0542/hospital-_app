@@ -1,0 +1,24 @@
+.kar-search-box {
+    height: 50px;
+    width: 580px;
+}
+
+.kar-search-box .input-group-text {
+    height: 100%;
+    background: #fff;
+    border: 1px solid #ACB3BF;
+    border-radius: 10px 0px 0px 10px;
+    border-right: 0px;
+}
+
+.kar-search-box .form-control {
+    background: #fff;
+    border: 1px solid #ACB3BF;
+    border-left: 0px;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.kar-search-box .form-control:focus {
+    border-color: #ACB3BF;
+    box-shadow: none;
+}
