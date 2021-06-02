@@ -1,11 +1,12 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
-import { Form } from "semantic-ui-react";
+import { Form, Dropdown } from "semantic-ui-react";
+import { connect } from "react-redux";
 import closeIcon from "../../../assets/icon/close.svg";
 
 import "./add-zone-model.css";
 
-function AddZoneModel({ show, handleClose }) {
+function AddZoneModel({ show, handleClose, isLoading, zoneChoice }) {
   const zone = [
     { key: "Bangalore", value: "Bangalore", text: "Bangalore" },
     { key: "Hyderabad", value: "Hyderabad", text: "Hyderabad" },
@@ -29,24 +30,33 @@ function AddZoneModel({ show, handleClose }) {
       </Modal.Header>
       <Modal.Body>
         <Form validate="false" size="large" className="kar-p20">
-          <Form.Select
+          {/* <Form.Select
             // label="Projects"
             name="module"
             required
             search
             selection
             placeholder="Select Zone"
-            options={zone}
-          />
+            key="title"
+            options={zoneChoice}
+          /> */}
+          <Dropdown placeholder="Select Zone" fluid search selection options={zone} />
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button className="kar-add-zone-btn kar-mauto kar-mb10" onClick={handleClose}>
+        <Button
+          className="kar-add-zone-btn kar-mauto kar-mb10"
+          onClick={handleClose}
+        >
           Add new Record
         </Button>
       </Modal.Footer>
     </Modal>
   );
 }
+const mapStateToProps = ({ choiceZoneList: { loading, data } }) => {
+  return { isLoading: loading, zoneChoice: data };
+};
+const mapDispatchToProps = () => ({});
 
-export default AddZoneModel;
+export default connect(mapStateToProps, mapDispatchToProps)(AddZoneModel);

@@ -1,79 +1,40 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import Header from "../../components/common/header/header";
-import KarTable from "../../components/common/table/table";
-import SearchBox from "../../components/common/search/search";
-import AddZoneModel from "../../components/model/add-zone-model/add-zone-model";
-
+import ManageZoneSection from "../../components/manage-zone/manage-zone-section/manage-zone-section";
+import {
+  fetchKarwinZoneList,
+  fetchZoneChoiceList,
+} from "../../redux/action/manage-zone/manage-zone";
 import "./manage-zone.css";
 
-function ManageZone() {
-  const tableHeader = [
-    {
-      key: "1",
-      name: "SL no",
-    },
-    {
-      key: "2",
-      name: "District name",
-    },
-    {
-      key: "3",
-      name: "Action",
-    },
-    {
-      key: "4",
-      name: "",
-    },
-  ];
-  const tableValue = [
-    {
-      sl_no: "1",
-      center_name: "Center name 1",
-      action: "manage_and_allocate",
-      delete: true,
-    },
-    {
-      sl_no: "2",
-      center_name: "Center name 3",
-      action: "manage_and_allocate",
-      delete: true,
-    },
-    {
-      sl_no: "3",
-      center_name: "Center name 3",
-      action: "manage_and_allocate",
-      delete: true,
-    },
-  ];
-  const [show, setShow] = useState(false);
+class ManageZone extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  async componentDidMount() {
+    await this.getZone();
+    await this.props.fetchZoneChoiceList();
+  }
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  return (
-    <>
-      <Header />
-      <Container>
-        <Row>
-          <Col>
-            <br />
-            <Row className="kar-table-sec">
-              <Col>
-                <SearchBox placeholder="Search district name" />
-                <KarTable tableHeader={tableHeader} tableValue={tableValue} />
-                <Row className="kar-mt20">
-                  <Col>
-                    <Button className="kar-add-dis" onClick={handleShow}>Add new DIstrict</Button>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-        <AddZoneModel show={show} handleClose={handleClose} />
-      </Container>
-    </>
-  );
+  getZone = async () => {
+    await this.props.fetchKarwinZoneList();
+  };
+
+  render() {
+    return (
+      <>
+        <Header />
+        <ManageZoneSection />
+      </>
+    );
+  }
 }
+const mapStateToProps = () => {};
+const mapDispatchToProps = (dispatch) => ({
+  fetchKarwinZoneList: () => dispatch(fetchKarwinZoneList()),
+  fetchZoneChoiceList: () => dispatch(fetchZoneChoiceList()),
+});
 
-export default ManageZone;
+export default connect(mapStateToProps, mapDispatchToProps)(ManageZone);
