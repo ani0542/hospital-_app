@@ -3,7 +3,10 @@ import { InputGroup, FormControl } from "react-bootstrap";
 import searchIcon from "../../../assets/icon/search.svg";
 import "./search.css";
 
-function SearchBox({ placeholder }) {
+function SearchBox({ placeholder, searchFun }) {
+  const onSearch = (e) => {
+    searchFun(e.target.value);
+  };
   return (
     <>
       <InputGroup className="mb-3 kar-search-box">
@@ -16,6 +19,7 @@ function SearchBox({ placeholder }) {
           placeholder={placeholder}
           aria-label="Username"
           aria-describedby="basic-addon1"
+          onChange={(e) => onSearch(e)}
         />
       </InputGroup>
     </>

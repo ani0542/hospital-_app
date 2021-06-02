@@ -49,6 +49,18 @@ function ManageZoneSection({ zone, isLoading, fetchKarwinZoneList }) {
     swal("Deleted!", "Zone deleted!", "success");
   };
 
+  const onSearch = (key) => {
+    const masterZone =
+      zone.karwin_zones && zone.karwin_zones.length ? zone.karwin_zones : [];
+    const filteredZone = masterZone.filter((o) => strContainsMatch(o, key));
+    updateZone(formatZoneValue(filteredZone));
+  };
+
+  const strContainsMatch = (slookfor, key) => {
+    console.log(slookfor, key);
+    return slookfor.title.includes(key);
+  };
+
   useEffect(() => {
     updateZone(
       formatZoneValue(
@@ -56,6 +68,7 @@ function ManageZoneSection({ zone, isLoading, fetchKarwinZoneList }) {
       )
     );
   }, [zone]);
+
   return (
     <>
       <Container>
@@ -64,7 +77,10 @@ function ManageZoneSection({ zone, isLoading, fetchKarwinZoneList }) {
             <br />
             <Row className="kar-table-sec">
               <Col>
-                <SearchBox placeholder="Search district name" />
+                <SearchBox
+                  placeholder="Search district name"
+                  searchFun={onSearch}
+                />
                 <KarTable
                   tableHeader={tableHeader}
                   tableValue={zoneFormated}
