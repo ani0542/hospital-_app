@@ -12,7 +12,7 @@ const Dragged=(props)=>{
                                                 </div>
                                                 <div className="col-md-4" style={{"float":"left"}}><div style={{"borderBottom":"1px solid #ACB3BF","width":"50%"}}>{props.item.title}</div></div>
                                                 
-                                                <div className="col-md-4" style={{"float":"left"}}><input type="number" className="quota" value={props.item.quota} onChange={(e)=>props.editQuota(e,props.item)}  style={{"textAlign":"center","paddingTop":"6px"}} /></div> 
+                                                <div className="col-md-4" style={{"float":"left"}}><input type="number" min={0} max={100} className="quota" defaultValue={props.item.quota} onChange={(e)=>props.editQuota(e,props.item)}  style={{"textAlign":"center","paddingTop":"6px"}} /></div> 
                     
                                                 </div>
                                              )

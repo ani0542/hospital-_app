@@ -2,10 +2,12 @@ import {useState,useEffect} from 'react'
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
 import  Dragged from '../components/draggable'
 import Header from "../components/common/header/header";
+import Dropdown from "../components/dropdown"
 import {sumBy} from 'lodash'
 import { Tabs } from 'antd';
 import swal from 'sweetalert'
 import API from '../Services/api.service'
+
 import 'antd/dist/antd.css';
 const { TabPane } = Tabs;
 
@@ -18,6 +20,7 @@ const ManageQuota=(props)=>{
     let [zoneId,setZoneId]=useState('')
     let [loader,setLoader]=useState(false)
     let [vaccineId,setVaccineId]=useState(1)
+    let [zones,setZones]=useState([])
 
     const callback=(key)=>{
         setVaccineId(Number(key))
@@ -26,6 +29,11 @@ const ManageQuota=(props)=>{
         useEffect(()=>{
             if(props.match.params.zone_id !== undefined)
             {
+                async function fetchZones()
+                {
+                    await getZones()
+                }
+                fetchZones()
                 setZoneId(Number(props.match.params.zone_id))
             }
         },[props.match.params])
@@ -54,6 +62,30 @@ const ManageQuota=(props)=>{
         console.log(e)
     }
     }
+    const getZones=async()=>{
+        try{
+            const zones=await API.get(`cowinka/karwin_zones`,{
+                headers: {
+                  'session-token': '35e54318-c93b-44f8-8e0e-862c81962f57'
+                 
+                 
+                }})
+                console.log(zones)
+           if(zones.status === 200)
+           {
+            setZones(zones.data.karwin_zones)
+           }
+           else
+           {
+            setZones([])
+           }
+        }
+        catch(e)
+        {
+            setZones([])
+            console.log(e)
+        }
+    }
 
 
         useEffect(()=>{
@@ -61,6 +93,7 @@ const ManageQuota=(props)=>{
             {
                 async function fetchData(){
                    await getQuotas()
+                   
 
                 }
                 fetchData()
@@ -131,11 +164,23 @@ else
 
 }
 
+const handleChange=(e)=>{
+
+setZoneId(e.target.value)
+}
 
     return (
        
         <div className="container-main" >
             <Header />
+            <div className="col-md-12" style={{"display":"flex","alignItems":"baseline"}}>
+                <div className="col-md-3" style={{"textAlign":"right","marginLeft":"6%"}}>
+                    <h1>Allocate Quota vaccines for </h1>
+                </div>
+                <div className="col-md-9" style={{"textAlign":"left"}}>
+                    <Dropdown handleChange={handleChange} id={zoneId} zones={zones}/>
+                </div>
+            </div>
        <div className="container" style={{"borderRadius":"20px","background":"#fff","paddingTop":"38px","paddingLeft":"40px","paddingBottom":"38px","marginTop":"19px"}}>
            <Tabs defaultActiveKey="1" onChange={callback}>
             <TabPane tab="COVISHIELD" key="1">
