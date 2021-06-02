@@ -94,7 +94,9 @@ function Header({ access, fetchAccessControl }) {
               <Dropdown className="kra-header-dropdown">
                 <Dropdown.Toggle>Hospital</Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Logout</Dropdown.Item>
+                  <Dropdown.Item>
+                    <NavLink to="/login">Logout</NavLink>
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
