@@ -6,7 +6,7 @@ import { hashHistory } from "../App";
 
 import axios from 'axios';
 export default axios.create({
-    baseURL: 'https://api.spacemonk.io/integration/auth'
+    baseURL: 'https://api.spacemonk.io/integration/'
     //baseURL: 'http://localhost:3000/prod/api/'
 });
 

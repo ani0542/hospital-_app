@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import PrivateRoute from "./Components/PrivateRoute";
+import PrivateRoute from "./components/PrivateRoute";
 import Hospital from "./Pages/Hospital/Hospital";
 import Session from "./Pages/Hospital/Session";
 import ReferencePage from "./Pages/Hospital/ReferencePage"
@@ -14,7 +14,7 @@ function AppRouter() {
             <Route exact path="/" component={Hospital} />
 
             <Route exact path="/session" component={Session} />
-            <Route exact path='/dummy' component={ManageQuota} />
+            <Route exact path='/manage-quota/:zone_id' component={ManageQuota} />
           <Route exact path='/login' component={ReferencePage} />
           <Route exact path='/details' component={DetailsPage} />
             {/* <PrivateRoute exact path="/session" component={Session} /> */}
