@@ -28,6 +28,7 @@ function App() {
         {/* <Switch>
           <Route exact path='/' component={Hospital} />
           <Route exact path='/session' component={Session} />
+          <Route exact path='/dummy' component={Dummy} />
           <Route exact path='/login' component={ReferencePage} />
           <Route exact path='/details' component={DetailsPage} />
         </Switch> */}

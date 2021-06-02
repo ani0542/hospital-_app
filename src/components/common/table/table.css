@@ -1,0 +1,36 @@
+.kar-table th, .kar-table td {
+    border: 0px;
+}
+
+.kar-table th {
+    color: #697386;
+    padding: 15px 0px;
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 17px;
+}
+
+.kar-table td {
+    padding: 0px;
+}
+
+.kar-table td p {
+    color: #1D293F;
+    padding: 15px 0px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 22px;
+}
+
+.kar-table .kar-table-link {
+    padding: 15px 0px;
+    font-size: 16px;
+    letter-spacing: 0;
+    font-weight: lighter;
+    line-height: 22px;
+    color: #6054DF;
+    text-decoration: underline;
+}
