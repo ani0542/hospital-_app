@@ -1,69 +1,44 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import '../../styles.css'
 import kelly from "../../assets/23.jpg"
 import governmebticon from "../../assets/govlogo.png"
 import cowinicon from "../../assets/cowiniconsmall.png"
-import {  useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import OtpInput from "react-otp-input";
 import axios from 'axios';
-import { useDispatch } from 'react-redux'
-import { logins } from "../../redux/action/login.actions";
-import API from '../../Services/api.service'
+
 
 function Hospital() {
-
-
-      //state--------------------
       const [showOtp, toggleOtp] = useState(false)
       const [phone,setPhone] = useState('')
-      const [logintxn,setLoginTxn] = useState([])
+      const [logintxn,setLoginTxn] = useState()
       const [isLoading,setIsLoading] = useState(true)
 
-      const history = useHistory();
-      const dispatch = useDispatch();
-      //handler--------------------
       const handleChange=(e)=>{
             setPhone(e.target.value)
       }
 
 
-      // console.log(logintxn)
+      console.log(logintxn)
 
 
       //login request
       const handleLogin=()=>{
-            // const data={
-            //        mobile:phone
-            // }
-            // if(phone.length>9 && phone.length<11)
-            // {
-            // await  axios.post(`https://api.spacemonk.io/integration/auth/generatewebotp`,data)
-
-            // https://api.spacemonk.io/integration/auth/validate-web-otp
-            // .then((res)=>{
-                  // console.log(res.data)
-                  // setLoginTxn(res?.data)
-                  // setIsLoading(false)
-            // })
-            // .catch((err)=>{
-            //       console.log(err)
-            // })
-            // setPhone('')
-            // history.push({
-            //       pathname: "/session",
-            //       state: { item: logintxn },
-            // })
-            // if(logintxn?.length){
-            //       history.push('/session', { items: logintxn });
-            // }
-            if(phone.length>9 && phone.length<11)
-            {
-                  dispatch(logins({ mobile: phone }));
-                  history.push(`/session`)
+            const data={
+                   mobile:phone
             }
-      
+            if(phone.length>9)
+            axios.post(`https://api.spacemonk.io/integration/auth/generatewebotp`,data)
+            .then((res)=>{
+                  // console.log(res.data)
+                  setLoginTxn(res.data)
+                  setIsLoading(false)
+            })
+            .catch((err)=>{
+                  console.log(err)
+            })
+            setPhone('')
       }
-      
 
       return (
             <>
@@ -72,6 +47,8 @@ function Hospital() {
                               <div className="col-md-6 p-0 ">
                                     <img className="img-fluid image-left-hospital" src={kelly} alt="" />
                               </div>
+                              {
+                                    !logintxn ?
                                           <div className="col-md-6 login-form-container">
                                                 <div className="container align-items-center">
                                                       <div className="row justify-content-center my-3">
@@ -95,29 +72,36 @@ function Hospital() {
                                                       </div>
                                                       <div className="row mx-5">
                                                             <div className="col-12 text-center">
-                                                                  {/* {
-                                                                       logintxn?(
-                                                                             <>
-                                                                                    <Link
-                                                                                          to={{
-                                                                                                pathname: "/session",
-                                                                                                state: { item: 'logintxn' },
-                                                                                          }}
-                                                                                    >
-                                                                                       <button className='login-btn' onClick={handleLogin}>LOGIN</button>
-                                                                                    </Link>
-                                                                             </>
-                                                                       )  :(
-                                                                             <>
-
-                                                                             </>
-                                                                       )
-                                                                  } */}
                                                                   <button className='login-btn' onClick={handleLogin}>LOGIN</button>
                                                             </div>
                                                       </div>
                                                 </div>
-                                          </div>        
+                                          </div>
+                                          : <div className="col-md-6 text-center otp-container my-auto">
+                                                <h1> Enter OTP </h1>
+                                                <h4> Please enter the OTP you have received </h4>
+                                                <div class="d-flex justify-content-center align-items-center container">
+                                                      <div class="card card-otp py-1 px-3">
+
+                                                            <div class="d-flex flex-row justify-content-center">
+                                                                   <OtpInput
+                                                                        // value={OTP}
+                                                                        // onChange={handleChange}
+                                                                        numInputs={4}
+                                                                        separator={<span>&nbsp;</span>}
+                                                                        isInputNum={true}
+                                                                        isInputSecure={true}
+                                                                        className='input_otp  mt-3'
+                                                                    />
+                                                            </div>
+                                                            {/* <div class="text-center mt-5"><span class="d-block mobile-text">Don't receive the code?</span><span class="font-weight-bold text-danger cursor">Resend</span></div> */}
+                                                      </div>
+                                                </div>
+                                                <div className="col-12 text-center otp-sign-in">
+                                                      <Link to='/login'> <button className='login-btn'>SIGN IN</button></Link>
+                                                </div>
+                                          </div>
+                              }
                         </div>
                   </div>
             </>

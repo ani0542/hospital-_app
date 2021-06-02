@@ -5,8 +5,16 @@ import cowinicon from "../../assets/cowiniconsmall.png"
 import '../../styles.css'
 import { Link } from 'react-router-dom'
 import OtpInput from "react-otp-input";
+import { useSelector } from 'react-redux'
 
-function Session() {
+function Session(props) {
+    // console.log(props.location.state)
+
+    const txndetails = useSelector(state => state.log.configs);
+
+    console.log(txndetails)
+
+    // console.log(props)
 
     // const [OTP, setOTP] = useState("");
 
@@ -50,13 +58,22 @@ function Session() {
                                 <div class="d-flex justify-content-center align-items-center container">
                                     <div class="card card-otp py-1 px-3">
                                         
-                                        <div class="d-flex flex-row">
-                                            <input type="text" class="form-control form-control-otp" autofocus="" />
+                                        <div class="d-flex flex-row justify-content-center">
+                                            {/* <input type="text" class="form-control form-control-otp" autofocus="" />
                                             <input type="text" class="form-control form-control-otp" />
                                             <input type="text" class="form-control form-control-otp" />
                                             <input type="text" class="form-control form-control-otp" />
                                             <input type="text" class="form-control form-control-otp" />
-                                            <input type="text" class="form-control form-control-otp" />
+                                            <input type="text" class="form-control form-control-otp" /> */}
+                                                      <OtpInput
+                                                        // value={OTP}
+                                                        // onChange={handleChange}
+                                                        numInputs={4}
+                                                        separator={<span>&nbsp;</span>}
+                                                        isInputNum={true}
+                                                        isInputSecure={true}
+                                                        className='input_otp  mt-3'
+                                                    />
                                         </div>
                                         {/* <div class="text-center mt-5"><span class="d-block mobile-text">Don't receive the code?</span><span class="font-weight-bold text-danger cursor">Resend</span></div> */}
                                     </div>

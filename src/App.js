@@ -3,44 +3,40 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
+  // Switch,
+  // Route,
 } from "react-router-dom";
+import { createHashHistory } from "history";
+// import Hospital from './Pages/Hospital/Hospital';
+// import ReferencePage from "./Pages/Hospital/ReferencePage"
+// import DetailsPage from './Pages/Hospital/DetailsPage';
+// import Session from './Pages/Hospital/Session';
+import { Provider } from "react-redux";
+import store from './store';
+import AppRouter from './AppRouter';
 
 import Hospital from './Pages/Hospital/Hospital';
-import ReferencePage from "./Pages/Hospital/ReferencePage"
-import DetailsPage from './Pages/Hospital/DetailsPage';
-import ManageQuota from './Pages/ManageQuota'
-// import MainQuataPage from './Pages/District/MainQuataPage';
-// import AllocatequotaPage from './Pages/District/AllocatequotaPage';
 import Session from './Pages/Hospital/Session';
+export const hashHistory = createHashHistory();
 
-import VaccineCenter from './Pages/VaccineCenter/vaccineCenter';
-import ManageZone from './Pages/ManageZone/manageZone';
-import VaccineCenterDetail from './Pages/VaccineCenterDetail/vaccineCenterDetail';
+
 
 function App() {
-
-
   //jsx----------------------------
   return (
     <>
-
-      <Router>
-        <Switch>
+ <Provider store={store}>
+      <Router history={hashHistory}>
+        {/* <Switch>
           <Route exact path='/' component={Hospital} />
           <Route exact path='/session' component={Session} />
           <Route exact path='/dummy' component={ManageQuota} />
           <Route exact path='/login' component={ReferencePage} />
           <Route exact path='/details' component={DetailsPage} />
-          {/* <Route exact path='/vaccine' component={MainQuataPage}/> 
-                          <Route exact path='/quota' component={AllocatequotaPage}/>  */}
-          <Route exact path='/vaccine-center' component={VaccineCenter} />
-          <Route exact path='/manage-zone' component={ManageZone} />
-          <Route exact path='/vaccine-center/:centerId' component={VaccineCenterDetail} />
-        </Switch>
+        </Switch> */}
+        <AppRouter/>
       </Router>
-
+   </Provider>
     </>
   )
 }
