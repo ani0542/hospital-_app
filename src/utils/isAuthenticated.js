@@ -1,3 +1,3 @@
-const isAuthenticated = () => Boolean(localStorage.getItem("token"));
+const isAuthenticated = () => Boolean(localStorage.getItem("session-token"));
 
 export default isAuthenticated;

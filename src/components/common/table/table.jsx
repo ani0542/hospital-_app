@@ -42,7 +42,10 @@ function KarTable({
       case "manage_and_allocate":
         return (
           <p>
-            <Link to="/vaccine-center" className="kar-table-link kar-mr20">
+            <Link
+              to={`/vaccine-center?zoneId=${row.sl_no}`}
+              className="kar-table-link kar-mr20"
+            >
               Manage vaccine centers
             </Link>
             <Link
@@ -122,7 +125,6 @@ function KarTable({
       });
     }
   };
-
   return (
     <>
       <Row>

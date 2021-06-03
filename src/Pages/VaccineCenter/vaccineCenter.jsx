@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import queryString from "query-string";
 import Header from "../../components/common/header/header";
 import VaccineCenterSection from "../../components/vaccine-center/vaccine-center-section/vaccine-center-section";
 import { fetchKarwinZoneList } from "../../redux/action/manage-zone/manage-zone";
@@ -15,8 +16,29 @@ class VaccineCenter extends Component {
   }
   async componentDidMount() {
     await this.getZone();
-    await this.getVaccineCenter(1);
+    let queries = queryString.parse(this.props.location.search);
+    if (queries.zoneId) {
+      await this.getVaccineCenter(queries.zoneId);
+    } else {
+      const karwin_zones =
+        this.props.zone.karwin_zones && this.props.zone.karwin_zones.length
+          ? this.props.zone.karwin_zones
+          : [];
+      if (karwin_zones.length) {
+        await this.updateQueryParams(karwin_zones);
+      }
+    }
   }
+
+  updateQueryParams = async (karwin_zones) => {
+    const zoneId = karwin_zones[0].id;
+    const stringified = queryString.stringify({ zoneId });
+    this.props.history.push({
+      pathname: "/vaccine-center",
+      search: "?" + stringified,
+    });
+    await this.getVaccineCenter(zoneId);
+  };
 
   getZone = async () => {
     await this.props.fetchKarwinZoneList();
@@ -31,12 +53,16 @@ class VaccineCenter extends Component {
     return (
       <>
         <Header />
-        <VaccineCenterSection />
+        <VaccineCenterSection  />
       </>
     );
   }
 }
-const mapStateToProps = () => {};
+const mapStateToProps = ({ karwinZoneList: { data } }) => {
+  return {
+    zone: data,
+  };
+};
 const mapDispatchToProps = (dispatch) => ({
   fetchKarwinZoneList: () => dispatch(fetchKarwinZoneList()),
   fetchKarwinVaccineCenterByZone: (id) =>
