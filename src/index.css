@@ -526,6 +526,27 @@ body {
   background-color: #FDDEDE!important;
   width: 430px;
 } */
+.enter-otp input {
+  width: 60px !important;
+  height: 50px;
+  border: 2px solid #e2e1e1;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  color: #161c2d;
+}
+.enter-otp label {
+  font-size: 14px;
+  color: #5b606c;
+}
+.enter-otp {
+  margin-top: 24px;
+}
+
+.enter-otp span {
+  padding: 5px;
+}
 .text-dose-2
 {
   color: #1D2941;

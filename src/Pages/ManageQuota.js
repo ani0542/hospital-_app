@@ -7,6 +7,7 @@ import {sumBy} from 'lodash'
 import { Tabs } from 'antd';
 import swal from 'sweetalert'
 import API from '../Services/api.service'
+import { axiosInstance } from "../Services/axios.service";
 
 import 'antd/dist/antd.css';
 const { TabPane } = Tabs;
@@ -41,12 +42,7 @@ const ManageQuota=(props)=>{
 
     const getQuotas=async()=>{
     try{
-        const quotas=await API.get(`cowinka/karwin_zones/${zoneId}/karwin_categories/${vaccineId}`,{
-            headers: {
-              'session-token': '35e54318-c93b-44f8-8e0e-862c81962f57'
-             
-             
-            }})
+        const quotas=await axiosInstance.get(`/karwin_zones/${zoneId}/karwin_categories/${vaccineId}`)
        if(quotas.status === 200)
        {
         setList(quotas.data.result)
@@ -64,12 +60,7 @@ const ManageQuota=(props)=>{
     }
     const getZones=async()=>{
         try{
-            const zones=await API.get(`cowinka/karwin_zones`,{
-                headers: {
-                  'session-token': '35e54318-c93b-44f8-8e0e-862c81962f57'
-                 
-                 
-                }})
+            const zones=await axiosInstance.get(`/karwin_zones`)
                 console.log(zones)
            if(zones.status === 200)
            {
@@ -140,12 +131,7 @@ else
 {
     setLoader(true)
    try{
-    const quotas=await API.post(`cowinka/karwin_zones/${zoneId}/karwin_categories/${vaccineId}`,{quotas:list},{
-        headers: {
-          'session-token': '35e54318-c93b-44f8-8e0e-862c81962f57'
-         
-         
-        }})
+    const quotas=await axiosInstance.post(`/karwin_zones/${zoneId}/karwin_categories/${vaccineId}`,{quotas:list})
     
         if(quotas.status === 200)
         {

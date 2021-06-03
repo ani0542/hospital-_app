@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Session from './Session'
 import '../../styles.css'
 import kelly from "../../assets/23.jpg"
 import governmebticon from "../../assets/govlogo.png"
@@ -6,15 +7,20 @@ import cowinicon from "../../assets/cowiniconsmall.png"
 import {  useHistory } from 'react-router-dom'
 import OtpInput from "react-otp-input";
 import axios from 'axios';
-import { useDispatch } from 'react-redux'
+import { confirmOtp } from '../../Services/login.service';
+import { fetchAccessControl } from "../../redux/action/user/user";
+import { useDispatch,connect } from 'react-redux'
 import { logins } from "../../redux/action/login.actions";
+import sha256 from 'crypto-js/sha256';
 import API from '../../Services/api.service'
 
-function Hospital() {
+function Hospital({access, fetchAccessControl}) {
 
 
       //state--------------------
       const [showOtp, toggleOtp] = useState(false)
+      const [loader,showLoader]=useState(false)
+      const [OTP, setOTP] = useState("");
       const [phone,setPhone] = useState('')
       const [logintxn,setLoginTxn] = useState([])
       const [isLoading,setIsLoading] = useState(true)
@@ -26,45 +32,65 @@ function Hospital() {
             setPhone(e.target.value)
       }
 
-
-      // console.log(logintxn)
-
+      const handleOtp = otp => setOTP(otp);
+    
+      const clear=()=>{
+            setOTP("")
+        }
 
       //login request
       const handleLogin=()=>{
-            // const data={
-            //        mobile:phone
-            // }
-            // if(phone.length>9 && phone.length<11)
-            // {
-            // await  axios.post(`https://api.spacemonk.io/integration/auth/generatewebotp`,data)
-
-            // https://api.spacemonk.io/integration/auth/validate-web-otp
-            // .then((res)=>{
-                  // console.log(res.data)
-                  // setLoginTxn(res?.data)
-                  // setIsLoading(false)
-            // })
-            // .catch((err)=>{
-            //       console.log(err)
-            // })
-            // setPhone('')
-            // history.push({
-            //       pathname: "/session",
-            //       state: { item: logintxn },
-            // })
-            // if(logintxn?.length){
-            //       history.push('/session', { items: logintxn });
-            // }
+           
             if(phone.length>9 && phone.length<11)
             {
                   dispatch(logins({ mobile: phone }));
-                  history.push(`/session`)
+                  toggleOtp(true)
+                  //history.push(`/session/${phone}`)
             }
       
       }
       
+      const changeNumber=()=>{
+            
+            toggleOtp(false)
+          }
+      const resendOtp=()=>{
+            dispatch(logins({ mobile: phone }));
+      }
 
+      const confirmOtpClick = async () => {
+            const hashDigest = sha256(OTP.toString());
+            try {
+                  showLoader(true)
+                let session = await confirmOtp({
+                    "otp": hashDigest.toString(),
+                    "txnId": "4c150581-c3d7-11eb-b03d-df5124d3c49a"
+                });
+                showLoader(false)
+                localStorage.setItem('session-token', session?.data?.['session-token'])
+                await fetchAccessControl();
+            } catch (err) {
+                console.log(err)
+                showLoader(false)
+                alert('err')
+            }
+        }
+        const redirectAction = () => {
+            if (access) {
+                if(access.manage_verify){
+                    history.push("/");
+                }else{
+                    history.push("/vaccine-center");
+                }
+            }
+        }
+       
+            
+        
+    
+        useEffect(() => {
+            redirectAction();
+        }, [access]);
       return (
             <>
                   <div className="container-fluid">
@@ -72,7 +98,10 @@ function Hospital() {
                               <div className="col-md-6 p-0 ">
                                     <img className="img-fluid image-left-hospital" src={kelly} alt="" />
                               </div>
-                                          <div className="col-md-6 login-form-container">
+                              {
+                                    showOtp?
+                                    <Session OTP={OTP} confirmOtpClick={confirmOtpClick} mobile={phone} changeNumber={changeNumber} handleOtp={handleOtp} clear={clear} resendOtp={resendOtp}/>:
+                                    <div className="col-md-6 login-form-container">
                                                 <div className="container align-items-center">
                                                       <div className="row justify-content-center my-3">
                                                             <img className="img-fluid government-emblem" src={governmebticon} alt="" />
@@ -95,36 +124,28 @@ function Hospital() {
                                                       </div>
                                                       <div className="row mx-5">
                                                             <div className="col-12 text-center">
-                                                                  {/* {
-                                                                       logintxn?(
-                                                                             <>
-                                                                                    <Link
-                                                                                          to={{
-                                                                                                pathname: "/session",
-                                                                                                state: { item: 'logintxn' },
-                                                                                          }}
-                                                                                    >
-                                                                                       <button className='login-btn' onClick={handleLogin}>LOGIN</button>
-                                                                                    </Link>
-                                                                             </>
-                                                                       )  :(
-                                                                             <>
-
-                                                                             </>
-                                                                       )
-                                                                  } */}
-                                                                  <button className='login-btn' onClick={handleLogin}>LOGIN</button>
+                                                                 
+                                                                  <button className='login-btn' onClick={handleLogin}>{loader?'LOGIN...':'LOGIN'}</button>
                                                             </div>
                                                       </div>
                                                 </div>
-                                          </div>        
+                                          </div> 
+                                                
+                              }       
                         </div>
                   </div>
             </>
       )
 }
 
-export default Hospital
+const mapStateToProps = ({ userAccess: { access } }) => {
+      return { access: access };
+  };
+  const mapDispatchToProps = (dispatch) => ({
+      fetchAccessControl: () => dispatch(fetchAccessControl()),
+  });
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Hospital);
 
 
 

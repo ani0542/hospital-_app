@@ -17,7 +17,7 @@ function AppRouter() {
         <Switch>
             <Route exact path="/" component={Hospital} />
 
-            <Route exact path="/session" component={Session} />
+            <Route exact path="/session/:phone" component={Session} />
             <Route exact path='/manage-quota/:zone_id' component={ManageQuota} />
             <Route exact path='/reference' component={ReferencePage} />
             <Route exact path='/details/:ref_id' component={DetailsPage} />
