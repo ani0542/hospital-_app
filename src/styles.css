@@ -17,34 +17,106 @@
 .login-form-container {
   margin: 100px 0 0 0 
 }
+.logain-wrap {
+  max-width: 418px;
+  margin-left: 70px;
+}
+.logain-hdn h5 {
+  font-size: 34px;
+  color: #161c2d;
+  font-weight: 700;
+  margin: 0;
+  line-height: 35px;
+}
+.logain-hdn p {
+  margin: 0;
+  font-size: 20px;
+  color: #161c2d;
+  font-weight: 500;
+}
+.logain-hdn {
+  margin-bottom: 31px;
+}
+.logain-text p {
+  margin: 0;
+  font-size: 16px;
+  color: #161c2d;
+  font-weight: 500;
+}
+.logain-text p {
+  margin-top: 30px !important;
+  margin-left: 10px !important;
+}
+.logain-text p a {
+  margin-left: 11px;
+  text-decoration: none;
+  color: #4a61ff;
+}
+.logain-text p a {
+  color: #4a61ff;
+  text-decoration: underline;
+}
+.logain-otp p a {
+  margin-top: 20px !important;
+  color: #4a61ff !important;
+  cursor: pointer;
+}
+.logain-otp
+{
+  width:65%;
+}
+.logain-resend {
+  float: right;
+}
+.logain-btn a {
+  width: auto;
+  height: 50px;
+  background:linear-gradient(141.44deg, #6558F4 0%, #2C1FB5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff !important;
+  font-size: 16px;
+ font-weight: 500;
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 62px;
+  box-shadow: 0 9px 45px 21px #e3e3e3;
+}
+.logain-btn.btn-2 a {
+  width: 75%;
+}
 
+.logain-btn {
+  margin-top: 40px;
+}
 .hospital-id {
   box-sizing: border-box;
-  padding: 18px 22px;
-  /* height: 61px;
-  width: auto; */
- /* width: 70%; */
- width: 90%;
+  padding: 10px 22px;
+  /* width: 70%; */
+  width: 67%;
   border: 1px solid #70748E;
   border-radius: 30px;
   background-color: #FFFFFF;
+  margin-left: auto;
+  font-size:25px;
+  margin-right: auto;
 }
 
 .login-btn {
-  padding: 0 50px;
+  padding: 20px;
   border: none;
   outline: none;
   color: #fff;
   font-weight: 700;
   border-radius: 30px;
   height: 60px;
-  width: 70%;
+  width: 65%;
+  margin-left:10px;
   background: linear-gradient(141.44deg, #6558F4 0%, #2C1FB5 100%);
 }
 
-.input-field-container {
-  padding: 0px 80px;
-}
+
 
 .otp-container {
   margin: 150px 0 0 0 ;
