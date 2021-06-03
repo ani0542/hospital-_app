@@ -1,0 +1,30 @@
+  .ant-picker-dropdown {
+      z-index: 999999;
+  }
+
+  .ant-select-dropdown {
+      z-index: 999999;
+  }
+
+  .kar-add-vaccine-center-session-from .ant-picker, .kar-add-vaccine-center-session-from .ant-select-selector, .kar-add-vaccine-center-session-from .ant-input-number {
+      width: 100% !important;
+      height: 50px !important;
+      border-radius: 10px !important;
+      box-shadow: none !important; 
+  }
+
+  .kar-add-vaccine-center-session-from .ant-select-single .ant-select-selector .ant-select-selection-item {
+      line-height: 45px;
+  }
+
+  .kar-add-vaccine-center-session-from .ant-input-number-input-wrap {
+      height: 50px;
+  }
+
+  .kar-add-vaccine-center-session-from .ant-input-number-input {
+      height: 50px;
+  }
+
+  .kar-add-vaccine-center-session-from .ant-input-number-handler-wrap {
+      border-radius: 0 10px 10px 0 !important;
+  }

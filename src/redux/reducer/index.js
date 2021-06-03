@@ -6,6 +6,8 @@ import { loginReducer, loginReducerInit } from "./login.reducer";
 import { ManageZoneReducer } from "./manage-zone.reducer";
 import { ChoiceZoneReducer } from "./choice-zone.reducer";
 import { UserReducer } from "./user.reducer";
+import { CommonReducer } from "./common.reducer";
+import { ManageVaccineCenterReducer, AllManageVaccineCenterReducer, ManageVaccineCenterDetailReducer } from "./manage-vaccine-center";
 // import { LOGINAUTH } from "../action/login.actions";
 // import { ErrorReducer, ErrorReducerInit } from "./error.reducer";
 
@@ -22,7 +24,11 @@ const reducer = combineReducers({
     log: loginReducer,
     karwinZoneList: ManageZoneReducer,
     choiceZoneList: ChoiceZoneReducer,
-    userAccess: UserReducer
+    userAccess: UserReducer,
+    vaccineCenterList: ManageVaccineCenterReducer,
+    allVaccineCenterList: AllManageVaccineCenterReducer,
+    commonData: CommonReducer,
+    vaccineCenterDetail: ManageVaccineCenterDetailReducer
 });
 
 const rootReducer = (state, action) => {

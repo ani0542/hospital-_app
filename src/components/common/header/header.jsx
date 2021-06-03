@@ -12,7 +12,12 @@ function Header({ access, fetchAccessControl }) {
   useEffect(() => {
     fetchAccessControl();
   }, []);
-  console.log(access, "access");
+
+  const logoutClick = () => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
+
   return (
     <>
       <div className="home">
@@ -94,8 +99,8 @@ function Header({ access, fetchAccessControl }) {
               <Dropdown className="kra-header-dropdown">
                 <Dropdown.Toggle>Hospital</Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item>
-                    <NavLink to="/">Logout</NavLink>
+                  <Dropdown.Item onClick={() => logoutClick()}>
+                    Logout
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>

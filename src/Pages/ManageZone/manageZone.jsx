@@ -5,8 +5,7 @@ import ManageZoneSection from "../../components/manage-zone/manage-zone-section/
 import {
   fetchKarwinZoneList,
   fetchZoneChoiceList,
-} from "../../redux/action/manage-zone/manage-zone";
-import "./manage-zone.css";
+} from "../../redux/action/manage-zone/manage-zone"; 
 
 class ManageZone extends Component {
   constructor(props) {

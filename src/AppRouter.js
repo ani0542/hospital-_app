@@ -24,7 +24,7 @@ function AppRouter() {
             {/* <PrivateRoute exact path="/session" component={Session} /> */}
             <Route exact path='/vaccine-center' component={VaccineCenter} />
             <Route exact path='/manage-zone' component={ManageZone} />
-            <Route exact path='/vaccine-center/:centerId' component={VaccineCenterDetail} />
+            <Route exact path='/vaccine-center/:zoneId/detail/:centerId' component={VaccineCenterDetail} />
 
         </Switch>
     );

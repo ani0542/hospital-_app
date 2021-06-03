@@ -1,97 +1,44 @@
-import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import Header from "../../components/common/header/header";
-import KarTable from "../../components/common/table/table";
-import Filter from "../../components/common/filter/filter";
-import "./vaccine-center-detail.css";
+import VaccineDetailCenterSection from "../../components/vaccine-center/vaccine-center-detail-section/vaccine-center-detail-section";
+import { fetchKarwinVaccineCenterDetail } from "../../redux/action/manage-vaccine-center/manage-vaccine-center";
+import { fetchVaccines } from "../../redux/action/common/common";
 
-function VaccineCenterDetail() {
-  const tableHeader = [
-    {
-      key: "1",
-      name: "SL no",
-    },
-    {
-      key: "2",
-      name: "Date",
-    },
-    {
-      key: "3",
-      name: "Vaccine name",
-    },
-    {
-      key: "4",
-      name: "Start time",
-    },
-    {
-      key: "5",
-      name: "End time",
-    },
-    {
-      key: "6",
-      name: "Vaccine count",
-    },
-    {
-      key: "7",
-      name: "Actions",
-    },
-  ];
-  const tableValue = [
-    {
-      sl_no: "1",
-      date: "27 May 2021",
-      vaccine_name: "Covishield",
-      start_time: "09 : 30 AM",
-      end_time: "04 : 00 PM",
-      vaccine_count: 20,
-      action: "edit_delete",
-    },
-    {
-      sl_no: "2",
-      date: "27 May 2021",
-      vaccine_name: "Covishield",
-      start_time: "09 : 30 AM",
-      end_time: "04 : 00 PM",
-      vaccine_count: 20,
-      action: "edit_delete",
-    },
-    {
-      sl_no: "3",
-      date: "27 May 2021",
-      vaccine_name: "Covishield",
-      start_time: "09 : 30 AM",
-      end_time: "04 : 00 PM",
-      vaccine_count: 20,
-      action: "edit_delete",
-    },
-  ];
-  return (
-    <>
-      <Header />
-      <Container>
-        <Row>
-          <Col>
-            <p className="kar-mt20">
-              Vaccine center — <b>Center details</b>
-            </p>
-            <h1 className="kar-mt20">Center name 1</h1>
-            <Row className="kar-table-sec">
-              <Col>
-                <Filter />
-                <br />
-                <KarTable tableHeader={tableHeader} tableValue={tableValue} />
-                <Row className="kar-mt20">
-                  <Col>
-                    <Button className="kar-add-rec">Add new Record</Button>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-    </>
-  );
+class VaccineCenterDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  async componentDidMount() {
+    await this.getVaccineCenter(
+      this.props.match.params.zoneId,
+      this.props.match.params.centerId
+    );
+    await this.props.fetchVaccines();
+  }
+
+  getVaccineCenter = async (zoneId, cvcId) => {
+    this.props.fetchKarwinVaccineCenterDetail(zoneId, cvcId);
+  };
+
+  render() {
+    return (
+      <>
+        <Header />
+        <VaccineDetailCenterSection />
+      </>
+    );
+  }
 }
+const mapStateToProps = () => {};
+const mapDispatchToProps = (dispatch) => ({
+  fetchKarwinVaccineCenterDetail: (zoneId, cvcId) =>
+    dispatch(fetchKarwinVaccineCenterDetail(zoneId, cvcId)),
+  fetchVaccines: () => dispatch(fetchVaccines()),
+});
 
-export default VaccineCenterDetail;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(VaccineCenterDetail);

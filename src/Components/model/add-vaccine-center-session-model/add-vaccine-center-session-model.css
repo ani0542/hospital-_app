@@ -1,0 +1,57 @@
+.kar-add-vaccine-center-session-model .modal-dialog {
+    max-width: 600px !important;
+}
+
+.kar-add-vaccine-center-session-model .modal-content {
+    border-radius: 20px;
+    border: none;
+}
+
+.kar-add-vaccine-center-session-model .modal-title {
+    margin: auto;
+    color: #0B0C1F;
+    font-family: Lato;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 39px;
+}
+
+.kar-add-vaccine-center-session-model .modal-header {
+    background-color: #F6F6F6;
+    border-radius: 20px 20px 0 0;
+    border: none;
+}
+
+.kar-add-vaccine-center-session-close-btn {
+    position: absolute;
+    right: -40px;
+    top: -40px;
+}
+
+.kar-add-vaccine-center-session-btn {
+    height: 60px;
+    width: 300px;
+    border-radius: 30px;
+    background: linear-gradient(141.44deg, #6558F4 0%, #2C1FB5 100%) !important;
+    color: #FFFFFF;
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 19px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.kar-add-vaccine-center-session-model .modal-footer {
+    border: none;
+}
+
+.kar-a-c-s-label {
+    color: #8B93A2;
+    font-family: Lato;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 17px;
+}

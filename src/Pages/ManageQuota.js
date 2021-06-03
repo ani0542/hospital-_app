@@ -174,10 +174,10 @@ setZoneId(e.target.value)
         <div className="container-main" >
             <Header />
             <div className="col-md-12" style={{"display":"flex","alignItems":"baseline"}}>
-                <div className="col-md-3" style={{"textAlign":"right","marginLeft":"6%"}}>
+                <div className="col-md-4" style={{"textAlign":"right","marginLeft":"6%"}}>
                     <h1>Allocate Quota vaccines for </h1>
                 </div>
-                <div className="col-md-9" style={{"textAlign":"left"}}>
+                <div className="col-md-8" style={{"textAlign":"left"}}>
                     <Dropdown handleChange={handleChange} id={zoneId} zones={zones}/>
                 </div>
             </div>

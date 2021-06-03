@@ -1,84 +1,48 @@
-import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import Header from "../../components/common/header/header";
-import KarTable from "../../components/common/table/table";
-import SearchBox from "../../components/common/search/search";
-import "./vaccine-center.css";
+import VaccineCenterSection from "../../components/vaccine-center/vaccine-center-section/vaccine-center-section";
+import { fetchKarwinZoneList } from "../../redux/action/manage-zone/manage-zone";
+import {
+  fetchKarwinVaccineCenterByZone,
+  fetchAllVaccineCenterByZone,
+} from "../../redux/action/manage-vaccine-center/manage-vaccine-center";
 
-function VaccineCenter() {
-  const tableHeader = [
-    {
-      key: "1",
-      name: "SL no",
-    },
-    {
-      key: "2",
-      name: "Center name",
-    },
-    {
-      key: "3",
-      name: "Action",
-    },
-    {
-      key: "4",
-      name: "Pincode",
-    },
-    {
-      key: "5",
-      name: "",
-    },
-  ];
-  const tableValue = [
-    {
-      sl_no: "1",
-      center_name: "Center name 1",
-      action: "check_online_slots",
-      pincode: "560070",
-      delete: true,
-    },
-    {
-      sl_no: "2",
-      center_name: "Center name 3",
-      action: "check_online_slots",
-      pincode: "560071",
-      delete: true,
-    },
-    {
-      sl_no: "3",
-      center_name: "Center name 3",
-      action: "check_online_slots",
-      pincode: "560070",
-      delete: true,
-    },
-  ];
-  return (
-    <>
-      <Header />
-      <Container>
-        <Row>
-          <Col>
-            <h1 className="kar-mt20">
-              Vaccination center for{" "}
-              <span className="kar-title-p-font-c">“Bengaluru Urban”</span>
-            </h1>
-            <Row className="kar-table-sec">
-              <Col>
-                <SearchBox placeholder="Search center name or pincode" />
-                <KarTable tableHeader={tableHeader} tableValue={tableValue} />
-                <Row className="kar-mt20">
-                  <Col>
-                    <Button className="kar-add-vac-cen">
-                      Add new vaccination center
-                    </Button>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-    </>
-  );
+class VaccineCenter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  async componentDidMount() {
+    await this.getZone();
+    await this.getVaccineCenter(1);
+  }
+
+  getZone = async () => {
+    await this.props.fetchKarwinZoneList();
+  };
+
+  getVaccineCenter = async (id) => {
+    await this.props.fetchKarwinVaccineCenterByZone(id);
+    this.props.fetchAllVaccineCenterByZone(id);
+  };
+
+  render() {
+    return (
+      <>
+        <Header />
+        <VaccineCenterSection />
+      </>
+    );
+  }
 }
+const mapStateToProps = () => {};
+const mapDispatchToProps = (dispatch) => ({
+  fetchKarwinZoneList: () => dispatch(fetchKarwinZoneList()),
+  fetchKarwinVaccineCenterByZone: (id) =>
+    dispatch(fetchKarwinVaccineCenterByZone(id)),
+  fetchAllVaccineCenterByZone: (id) =>
+    dispatch(fetchAllVaccineCenterByZone(id)),
+});
 
-export default VaccineCenter;
+export default connect(mapStateToProps, mapDispatchToProps)(VaccineCenter);

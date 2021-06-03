@@ -12,6 +12,14 @@
     padding-top: 70px !important;
 }
 
+.kar-pt50 {
+    padding-top: 50px !important;
+}
+
+.kar-plr20 {
+    padding: 0px 20px !important;
+}
+
 /* margin */
 
 .kar-m60 {
@@ -72,7 +80,7 @@
     position: relative;
 }
 
-.kar-text-a-c{
+.kar-text-a-c {
     text-align: center;
 }
 
